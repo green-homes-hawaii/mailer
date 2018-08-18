@@ -6,7 +6,7 @@ const AWS = require("aws-sdk");
 const SES = new AWS.SES();
 
 function sendMail(formData, cb) {
-  const { contact, from, subject, body } = formData.body;
+  const { contact, from, subject, body } = formData;
 
   const emailParams = {
     Source: "mailgun@awitherow.com",
