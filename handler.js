@@ -12,20 +12,20 @@ function sendMail(formData, cb) {
     Source: "mailgun@awitherow.com",
     ReplyToAddresses: [from],
     Destination: {
-      ToAddresses: ["me@awitherow.com"] // SES RECEIVING EMAIL
+      ToAddresses: ["EMAIL_DESIRED"], // SES RECEIVING EMAIL
     },
     Message: {
       Body: {
         Text: {
           Charset: "UTF-8",
-          Data: `Contact: ${contact}\nEmail: ${from}\n\n ${body}`
-        }
+          Data: `Contact: ${contact}\nEmail: ${from}\n\n ${body}`,
+        },
       },
       Subject: {
         Charset: "UTF-8",
-        Data: `[${contact}] - ${subject}`
-      }
-    }
+        Data: `[${contact}] - ${subject}`,
+      },
+    },
   };
 
   SES.sendEmail(emailParams, cb);
@@ -39,11 +39,11 @@ module.exports.mail = (event, context, callback) => {
       statusCode: err ? 500 : 200,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://awitherow.com"
+        "Access-Control-Allow-Origin": "ENTER_URL_HERE",
       },
       body: JSON.stringify({
-        message: err ? err.message : data
-      })
+        message: err ? err.message : data,
+      }),
     };
 
     callback(null, response);
