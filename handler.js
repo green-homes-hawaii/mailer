@@ -12,7 +12,7 @@ function sendMail(formData, cb) {
     Source: "mailgun@awitherow.com",
     ReplyToAddresses: [from],
     Destination: {
-      ToAddresses: ["greenhomes808@gmail.com "], // SES RECEIVING EMAIL
+      ToAddresses: ["greenhomeshawaii@gmail.com"], // SES RECEIVING EMAIL
     },
     Message: {
       Body: {
@@ -23,7 +23,7 @@ function sendMail(formData, cb) {
       },
       Subject: {
         Charset: "UTF-8",
-        Data: `[${contact}] - ${subject}`,
+        Data: `Website Inquiry: [${contact}] - ${subject}`,
       },
     },
   };
@@ -39,7 +39,7 @@ module.exports.mail = (event, context, callback) => {
       statusCode: err ? 500 : 200,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://green-homes-hawaii.github.io",
+        "Access-Control-Allow-Origin": "https://greenhomeshi.com",
       },
       body: JSON.stringify({
         message: err ? err.message : data,
